@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fdf6f0;font-family:'Lato',sans-serif;color:#5a3e3e;min-height:100vh}
+.invitation{max-width:600px;margin:0 auto;padding:0 0 3rem}
+
+/* HERO */
+.hero{position:relative;background:linear-gradient(180deg,#fde8e8 0%,#fdf0e8 60%,#fdf6f0 100%);padding:3rem 2rem 2.5rem;text-align:center;overflow:hidden}
+.petals{position:absolute;inset:0;pointer-events:none}
+.petal{position:absolute;opacity:0.35;animation:fall linear infinite}
+@keyframes fall{0%{transform:translateY(-30px) rotate(0deg);opacity:0}10%{opacity:0.35}90%{opacity:0.35}100%{transform:translateY(110%) rotate(360deg);opacity:0}}
+.ornament{color:#c97b84;font-size:1.1rem;letter-spacing:0.3em;margin-bottom:1.4rem;font-family:'Lato',sans-serif;font-weight:300;text-transform:uppercase}
+
+/* PHOTO FRAME */
+.photo-frame-wrap{position:relative;width:210px;height:210px;margin:0 auto 1.6rem;cursor:pointer}
+.photo-frame-wrap input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:3;border-radius:50%}
+.photo-oval{width:100%;height:100%;border-radius:50%;overflow:hidden;border:5px solid #fff;box-shadow:0 0 0 3px #e8b4b8, 0 4px 24px rgba(180,80,100,0.13)}
+.photo-oval img{width:100%;height:100%;object-fit:cover;display:block}
+/* Decorative corner florals */
+.frame-deco{position:absolute;font-size:1.5rem;color:#e8b4b8;pointer-events:none;line-height:1}
+.frame-deco.tl{top:-6px;left:-6px;transform:rotate(-30deg)}
+.frame-deco.tr{top:-6px;right:-6px;transform:rotate(30deg)}
+.frame-deco.bl{bottom:-6px;left:-6px;transform:rotate(-150deg)}
+.frame-deco.br{bottom:-6px;right:-6px;transform:rotate(150deg)}
+
+.names{font-family:'Playfair Display',serif;font-size:3.2rem;color:#8b3a4a;line-height:1.1;margin-bottom:0.4rem}
+.names em{font-style:italic;color:#c97b84}
+.ampersand{font-size:4rem;color:#e8b4b8;font-family:'Cormorant Garamond',serif;font-style:italic;display:block;line-height:1;margin:0.2rem 0}
+.tagline{font-family:'Cormorant Garamond',serif;font-style:italic;color:#b07080;font-size:1.15rem;margin-top:1rem;letter-spacing:0.05em}
+
+.divider{display:flex;align-items:center;gap:1rem;margin:2rem auto;max-width:320px;padding:0 2rem}
+.divider-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,#e8b4b8,transparent)}
+.divider-flower{color:#e8b4b8;font-size:1.1rem}
+.section{padding:1.5rem 2.5rem;text-align:center}
+.label{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:#c97b84;font-weight:400;margin-bottom:0.4rem;font-family:'Lato',sans-serif}
+.detail-main{font-family:'Playfair Display',serif;font-size:1.5rem;color:#8b3a4a;margin-bottom:0.2rem}
+.detail-sub{font-family:'Cormorant Garamond',serif;font-size:1rem;color:#b07080;font-style:italic}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid #f0d0d4;border-bottom:1px solid #f0d0d4;margin:0 2rem}
+.info-cell{padding:1.6rem 1rem;text-align:center}
+.info-cell:first-child{border-right:1px solid #f0d0d4}
+.card-venue{margin:1.5rem 2rem;background:#fff8f6;border:1px solid #f0d0d4;border-radius:12px;padding:1.8rem;text-align:center}
+.venue-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:#8b3a4a;margin-bottom:0.3rem}
+.venue-addr{font-size:0.88rem;color:#b07080;line-height:1.6}
+.rsvp-section{margin:2rem 2rem 0;text-align:center}
+.rsvp-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:#8b3a4a;margin-bottom:0.5rem}
+.rsvp-sub{font-size:0.88rem;color:#b07080;margin-bottom:1.5rem;font-family:'Cormorant Garamond',serif;font-style:italic}
+.rsvp-form{display:flex;flex-direction:column;gap:0.85rem;max-width:340px;margin:0 auto}
+.rsvp-input{border:1px solid #e8c0c4;border-radius:8px;padding:0.7rem 1rem;font-size:0.95rem;color:#5a3e3e;background:#fffafa;font-family:'Lato',sans-serif;outline:none;transition:border-color 0.2s}
+.rsvp-input:focus{border-color:#c97b84}
+.rsvp-input::placeholder{color:#c9a0a6}
+.rsvp-select{border:1px solid #e8c0c4;border-radius:8px;padding:0.7rem 1rem;font-size:0.95rem;color:#5a3e3e;background:#fffafa;font-family:'Lato',sans-serif;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c97b84' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.rsvp-btn{background:#c97b84;color:#fff;border:none;border-radius:8px;padding:0.85rem 1rem;font-size:0.95rem;font-family:'Lato',sans-serif;letter-spacing:0.08em;cursor:pointer;transition:background 0.2s}
+.rsvp-btn:hover{background:#b56c75}
+.success-msg{display:none;background:#fff0f2;border:1px solid #e8b4b8;border-radius:10px;padding:1.2rem;color:#8b3a4a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic}
+.countdown{display:flex;justify-content:center;gap:1.5rem;margin:1.2rem 0 0}
+.count-unit{text-align:center}
+.count-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:#8b3a4a;display:block;line-height:1}
+.count-lbl{font-size:0.7rem;letter-spacing:0.15em;color:#c97b84;text-transform:uppercase;margin-top:0.2rem}
+.footer{text-align:center;padding:2rem;font-size:0.8rem;color:#c9a0a6;letter-spacing:0.1em;font-family:'Lato',sans-serif;font-weight:300}
+</style>
+</head>
+<body>
+<div class="invitation">
+
+  <div class="hero">
+    <div class="petals" id="petals"></div>
+    <div class="ornament">— Pernikahan —</div>
+
+   <!-- HERO PHOTO FRAME -->
+<div class="photo-frame-wrap">
+  <div class="photo-oval">
+    <img id="hero-img" src="hamam-ika-wedding.png" alt="Foto pasangan">
+  </div>
+  <div class="frame-deco tl">❀</div>
+  <div class="frame-deco tr">❀</div>
+  <div class="frame-deco bl">❀</div>
+  <div class="frame-deco br">❀</div>
+</div>
+
+    <div class="names" style="margin-top:1.2rem">Hammam</div>
+    <span class="ampersand">&</span>
+    <div class="names"><em>Ika</em></div>
+    <div class="tagline">Bersama dalam cinta, bersatu dalam janji</div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-flower">✿</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="section">
+    <div class="label">Dengan penuh kebahagiaan</div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#b07080;font-style:italic;line-height:1.8">
+      Kami mengundang kehadiran Bapak / Ibu / Saudara/i<br>untuk menyaksikan dan mendoakan<br>momen sakral persatuan kami
+    </p>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-cell">
+      <div class="label">Tanggal</div>
+      <div class="detail-main">12 Juli</div>
+      <div class="detail-sub">2026, Sabtu</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">Waktu</div>
+      <div class="detail-main">09.00 WIB</div>
+      <div class="detail-sub">Hingga selesai</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:1.5rem 2rem 0.5rem">
+    <div class="label">Hitung Mundur</div>
+    <div class="countdown">
+      <div class="count-unit"><span class="count-num" id="cd-h">00</span><div class="count-lbl">Hari</div></div>
+      <div class="count-unit"><span class="count-num" id="cd-j">00</span><div class="count-lbl">Jam</div></div>
+      <div class="count-unit"><span class="count-num" id="cd-m">00</span><div class="count-lbl">Menit</div></div>
+      <div class="count-unit"><span class="count-num" id="cd-s">00</span><div class="count-lbl">Detik</div></div>
+    </div>
+  </div>
+
+  <div class="card-venue" style="margin-top:1.5rem">
+    <div style="font-size:1.3rem;margin-bottom:0.6rem;color:#c97b84">✦</div>
+    <div class="venue-name">Masjid Raya Sheikh Zayed Surakarta</div>
+    <div class="venue-addr">Jl. Ahmad Yani No.121 Gilingan, Kec. Banjarsari, Kota Surakarta,<br>Jawa Tengah, Indonesia</div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-flower">✿</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="rsvp-section">
+    <div class="rsvp-title">Konfirmasi Kehadiran</div>
+    <div class="rsvp-sub">Mohon konfirmasi sebelum 8 Juli 2026</div>
+    <div class="rsvp-form" id="rsvp-form">
+      <input class="rsvp-input" type="text" id="rsvp-name" placeholder="Nama Anda">
+      <input class="rsvp-input" type="number" id="rsvp-guests" placeholder="Jumlah tamu (termasuk Anda)" min="1" max="5">
+      <select class="rsvp-select" id="rsvp-status">
+        <option value="">-- Kehadiran --</option>
+        <option value="hadir">✓ Saya / Kami akan hadir</option>
+        <option value="tidak">✗ Tidak dapat hadir</option>
+      </select>
+      <input class="rsvp-input" type="text" id="rsvp-msg" placeholder="Pesan & doa untuk mempelai (opsional)">
+      <button class="rsvp-btn" onclick="submitRsvp()">Kirim Konfirmasi</button>
+    </div>
+    <div class="success-msg" id="success-msg">
+      🌸 Terima kasih, <span id="success-name"></span>!<br>
+      Konfirmasi Anda telah kami terima. Kami sangat menantikan kehadiran Anda.
+    </div>
+  </div>
+
+  <div class="footer">
+    Hammam & Ika · 12 Juli 2026<br>
+    <span style="font-size:0.85em;letter-spacing:0.05em">Dibuat dengan cinta ✿</span>
+  </div>
+</div>
+
+<script>
+const container = document.getElementById('petals');
+const symbols = ['✿','❀','✾','❁'];
+for(let i=0;i<18;i++){
+  const p = document.createElement('div');
+  p.className='petal';
+  p.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  p.style.left=(Math.random()*100)+'%';
+  p.style.top=(Math.random()*100)+'%';
+  p.style.fontSize=(0.8+Math.random()*1.2)+'rem';
+  p.style.animationDuration=(6+Math.random()*10)+'s';
+  p.style.animationDelay=(-Math.random()*12)+'s';
+  container.appendChild(p);
+}
+
+function updateCountdown(){
+  const diff=Math.max(0,new Date('2026-02-14T10:00:00+07:00')-new Date());
+  document.getElementById('cd-h').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cd-j').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+function submitRsvp(){
+  const name=document.getElementById('rsvp-name').value.trim();
+  const status=document.getElementById('rsvp-status').value;
+  if(!name||!status){alert('Mohon isi nama dan status kehadiran Anda.');return;}
+  document.getElementById('rsvp-form').style.display='none';
+  document.getElementById('success-name').textContent=name;
+  document.getElementById('success-msg').style.display='block';
+}
+</script>
+</body>
+</html>
